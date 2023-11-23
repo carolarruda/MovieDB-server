@@ -19,7 +19,7 @@ Welcome to **The Movie Database** server! This server is the backend for a perso
 1. Clone this repository.
 2. Install dependencies using `npm install`.
 3. Set up environment variables using the .envexample as a reference (e.g., database connection, JWT secret).
-4. Run the server using `npm start`.
+4. Run the server using `node index.js`.
 
 ### API Endpoints
 
