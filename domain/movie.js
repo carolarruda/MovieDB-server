@@ -52,9 +52,14 @@ const createMovie = async (req, res) => {
 
 const getMovies = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const loggedUserId = req.user.userId;
+    const foundUser = await User.findById(loggedUserId);
 
-    const userMovies = await Movies.find({ userId });
+    if (!foundUser) {
+      return res.status(404).json({ errors: ["User not found"] });
+    }
+
+    const userMovies = foundUser.movies;
 
     if (!userMovies || userMovies.length === 0) {
       return res

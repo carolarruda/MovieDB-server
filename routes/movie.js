@@ -4,6 +4,6 @@ const authenticateToken = require("../utils/auth");
 const router = express.Router();
 
 router.post("/", authenticateToken, createMovie);
-router.get("/", getMovies);
+router.get("/", authenticateToken, getMovies);
 
 module.exports = router;
