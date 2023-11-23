@@ -15,7 +15,8 @@ const UserSchema = new Schema({
     required: true
   },
   movies: [{
-    title: String
+    type: Schema.Types.ObjectId,
+    ref: 'Movie', 
   }]
 })
 
