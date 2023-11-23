@@ -23,7 +23,7 @@ const createUser = async (req, res) => {
     const newUser = await user.save()
     console.log(user)
     const token = jwt.sign({ email }, secret)
-    res.status(200).json({
+    res.status(201).json({
       user: {
         email: newUser.email
       },
