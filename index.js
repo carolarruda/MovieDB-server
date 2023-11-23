@@ -2,7 +2,9 @@ require('dotenv').config()
 const bodyParser = require('body-parser')
 const express = require('express')
 const mongoose = require('mongoose')
+
 const app = express()
+
 app.use(bodyParser.json())
 const PORT = process.env.PORT || 4000
 const cors = require('cors')
@@ -10,6 +12,7 @@ app.use(cors())
 
 
 mongoose.set('strictQuery', false)
+
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI)
@@ -49,6 +52,6 @@ app.use('/user', authenticateToken, userRoute)
 
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log('listening for requests')
+    console.log(`Listening on port ${PORT}`)
   })
 })
