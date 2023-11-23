@@ -13,7 +13,17 @@ const createMovie = async (req, res) => {
         error: "Missing fields in request body",
       });
     }
-    const existingMovie = await Movie.findOne({ title });
+
+    const user = await User.findById(loggedUserId).populate('movies');
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const existingMovie = user.movies.find(
+      (movie) => movie.title === title
+    );
+
+
 
     if (existingMovie) {
       return res
@@ -29,10 +39,6 @@ const createMovie = async (req, res) => {
     });
 
 
-    const user = await User.findById(loggedUserId);
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
     const newMovie = await movie.save();
     user.movies.push(newMovie);
     await user.save();
