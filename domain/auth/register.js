@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const secret = process.env.JWT_SECRET
 const createUser = async (req, res) => {
 
-  const { email, password, username } = req.body
+  const { email, password } = req.body
 
   try {
     const existingUser = await User.findOne({ email })
@@ -16,7 +16,6 @@ const createUser = async (req, res) => {
     }
     const hash = await bcrypt.hash(password, saltRounds)
     const user = new User({
-      username,
       email,
       password: hash
     })
@@ -26,7 +25,6 @@ const createUser = async (req, res) => {
     const token = jwt.sign({ email }, secret)
     res.status(200).json({
       user: {
-        username: newUser.username,
         email: newUser.email
       },
       token: token
