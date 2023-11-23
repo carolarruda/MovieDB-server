@@ -2,10 +2,12 @@ const Movie = require("../models/movie");
 const User = require("../models/user")
 
 const createMovie = async (req, res) => {
-  console.log(req.body);
-  const { title, description, runtimeMins, url, userId } = req.body;
+  const { title, description, runtimeMins, url } = req.body;
+
+  const loggedUserId = req.user.userId
 
   try {
+
     if (!title) {
       return res.status(400).json({
         error: "Missing fields in request body",
@@ -27,9 +29,7 @@ const createMovie = async (req, res) => {
     });
 
 
-
-
-    const user = await User.findById(userId);
+    const user = await User.findById(loggedUserId);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }

@@ -39,15 +39,16 @@ app.use((req, res, next) => {
 const loginRouter = require('./routes/auth/login')
 app.use('/login', loginRouter)
 
-const movieRouter = require('./routes/movie')
-app.use('/movie', movieRouter)
-
 const registerRouter = require('./routes/auth/register')
 app.use('/register', registerRouter)
 
 const userRoute = require('./routes/user')
+
 const authenticateToken = require('./utils/auth')
 app.use('/user', authenticateToken, userRoute)
+
+const movieRouter = require('./routes/movie')
+app.use('/movie', authenticateToken, movieRouter)
 
 
 connectDB().then(() => {
