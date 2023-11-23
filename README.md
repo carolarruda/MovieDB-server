@@ -7,7 +7,7 @@ Welcome to **The Movie Database** server! This server is the backend for a perso
 ### Movie Management
 - **Add Movies:** Easily add movies to your collection with details like title, description, runtime, and a URL.
 - **View Movies:** Browse through your catalog of movies, whether they are in your watchlist or already watched.
-- **Update Movies:** Modify movie details or mark them as watched/unwatched.
+- **Update Movies:** Modify movie details or mark them as watched/unwatched. (coming soon)
 
 ### User Authentication
 - **Sign Up:** Create a personal account to start cataloging your movies.
